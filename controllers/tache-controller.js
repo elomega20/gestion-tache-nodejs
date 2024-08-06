@@ -1,5 +1,6 @@
 const Tache = require('../models/tache');
 
+//pour cree une tache
 exports.creeTache = (req, res) => {
     const tache = new Tache({
         nomTache: req.body.nomTache,
@@ -24,6 +25,7 @@ exports.creeTache = (req, res) => {
     );
 };
 
+// pour obtenir une tache
 exports.obtenirUneTache = (req, res) => {
     Tache.findOne({
         _id: req.params.id
@@ -40,6 +42,7 @@ exports.obtenirUneTache = (req, res) => {
     );
 };
 
+// pour obtenir tout les taches
 exports.obtenirToutLesTache = (req, res) => {
     Tache.find().then(
         (taches) => {
@@ -54,7 +57,7 @@ exports.obtenirToutLesTache = (req, res) => {
     );
 };
 
-
+// pour modifier une tache
 exports.modifierUneTache = (req, res) => {
     const tache = new Tache({
         _id: req.params.id,
@@ -80,6 +83,7 @@ exports.modifierUneTache = (req, res) => {
     );
 };
 
+// pour supprimer une tache
 exports.supprimerUneTache = (req, res) => {
     Tache.deleteOne({_id: req.params.id}).then(
         () => {

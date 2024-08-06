@@ -9,7 +9,7 @@ exports.creeTache = (req, res) => {
         status: req.body.status,
         responsable: req.body.responsable
     });
-    Tache.save().then(
+    tache.save().then(
         () => {
             res.status(201).json({
                 message: 'tache cree avec success!'

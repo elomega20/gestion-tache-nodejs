@@ -1,4 +1,4 @@
-const Thing = require('../models/tache');
+const Tache = require('../models/tache');
 
 exports.creeTache = (req, res) => {
     const thing = new Thing({
@@ -9,7 +9,7 @@ exports.creeTache = (req, res) => {
         status: req.body.status,
         responsable: req.body.responsable
     });
-    thing.save().then(
+    Tache.save().then(
         () => {
             res.status(201).json({
                 message: 'tache cree avec success!'
@@ -18,6 +18,22 @@ exports.creeTache = (req, res) => {
     ).catch(
         (error) => {
             res.status(400).json({
+                error: error
+            });
+        }
+    );
+};
+
+exports.obtenirUneTache = (req, res) => {
+    Tache.findOne({
+        _id: req.params.id
+    }).then(
+        (tache) => {
+            res.status(200).json(tache);
+        }
+    ).catch(
+        (error) => {
+            res.status(404).json({
                 error: error
             });
         }

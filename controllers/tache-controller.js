@@ -39,3 +39,17 @@ exports.obtenirUneTache = (req, res) => {
         }
     );
 };
+
+exports.obtenirToutLesTache = (req, res) => {
+    Tache.find().then(
+        (taches) => {
+            res.status(200).json(taches);
+        }
+    ).catch(
+        (error) => {
+            res.status(400).json({
+                error: error
+            });
+        }
+    );
+};

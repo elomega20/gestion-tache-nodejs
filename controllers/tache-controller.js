@@ -1,6 +1,6 @@
 const Thing = require('../models/tache');
 
-exports.creeTache = (req, res, next) => {
+exports.creeTache = (req, res) => {
     const thing = new Thing({
         nomTache: req.body.nomTache,
         description: req.body.description,

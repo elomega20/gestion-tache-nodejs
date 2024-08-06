@@ -1,7 +1,7 @@
 const Tache = require('../models/tache');
 
 exports.creeTache = (req, res) => {
-    const thing = new Thing({
+    const tache = new Tache({
         nomTache: req.body.nomTache,
         description: req.body.description,
         priorite: req.body.priorite,
@@ -44,6 +44,32 @@ exports.obtenirToutLesTache = (req, res) => {
     Tache.find().then(
         (taches) => {
             res.status(200).json(taches);
+        }
+    ).catch(
+        (error) => {
+            res.status(400).json({
+                error: error
+            });
+        }
+    );
+};
+
+
+exports.modifierUneTache = (req, res) => {
+    const tache = new Tache({
+        _id: req.params.id,
+        nomTache: req.body.nomTache,
+        description: req.body.description,
+        priorite: req.body.priorite,
+        echeance: req.body.echeance,
+        status: req.body.status,
+        responsable: req.body.responsable
+    });
+    Tache.updateOne({_id: req.params.id}, tache).then(
+        () => {
+            res.status(201).json({
+                message: 'tache modifier avec success!'
+            });
         }
     ).catch(
         (error) => {
